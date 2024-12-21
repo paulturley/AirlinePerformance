@@ -1,0 +1,89 @@
+table 'Origin Airports'
+	lineageTag: 9dbe4d1e-2964-4a2e-85d7-5b07673bf0e5
+
+	column 'Origin Airport Code'
+		dataType: string
+		lineageTag: e3360efc-606a-4b9d-8c6c-c75ff75df693
+		summarizeBy: none
+		sourceColumn: Origin Airport Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Origin City Name'
+		dataType: string
+		lineageTag: 7ad139a9-31ba-4a3a-8e11-ab5b31724b29
+		dataCategory: Place
+		summarizeBy: none
+		sourceColumn: Origin City Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Origin State'
+		dataType: string
+		lineageTag: 43508053-bb4c-4a0d-bdaf-b973808d7574
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Origin State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Origin State Fips'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f2a6c7aa-30f0-4800-8748-9b460d82f287
+		summarizeBy: none
+		sourceColumn: Origin State Fips
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Origin State Name'
+		dataType: string
+		lineageTag: db9bb02a-4b99-497b-a036-abd3180346ed
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Origin State Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Origin Wac'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: dab96a1d-8027-4bfd-adb9-eeb243f33b05
+		summarizeBy: none
+		sourceColumn: Origin Wac
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Origin Airport Descr'
+		dataType: string
+		lineageTag: daf70d7e-a3c7-4fab-8c1f-26c930b470c2
+		summarizeBy: none
+		sourceColumn: Origin Airport Descr
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Origin Airports' = m
+		mode: import
+		queryGroup: 'Output Queries'
+		source =
+				let
+				    Source = #"Airline Performance Base",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Origin", "OriginCityName", "OriginState", "OriginStateFips", "OriginStateName", "OriginWac"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns", {"Origin"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates",{{"Origin", "Origin Airport Code"}, {"OriginCityName", "Origin City Name"}, {"OriginState", "Origin State"}, {"OriginStateName", "Origin State Name"}, {"OriginStateFips", "Origin State Fips"}, {"OriginWac", "Origin Wac"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"Origin Airport Code", "Origin City Name", "Origin State", "Origin State Name", "Origin State Fips", "Origin Wac"}),
+				    #"Added: Origin Airport Descr" = Table.AddColumn(#"Reordered Columns", "Origin Airport Descr", each [Origin Airport Code] & "-" & [Origin City Name]),
+				    #"Changed Type: Origin Airport Descr" = Table.TransformColumnTypes(#"Added: Origin Airport Descr",{{"Origin Airport Descr", type text}})
+				in
+				    #"Changed Type: Origin Airport Descr"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

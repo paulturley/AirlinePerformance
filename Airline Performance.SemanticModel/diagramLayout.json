@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 294.18309524714874,
+            "y": 272.19001997034525
+          },
+          "nodeIndex": "Airline Performance",
+          "nodeLineageTag": "7041e8d6-db8a-4fda-9957-b075d4bee8bf",
+          "size": {
+            "height": 535.44444444444446,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 290.37232023468846,
+            "y": 1
+          },
+          "nodeIndex": "Airlines",
+          "nodeLineageTag": "12b921d9-b791-46ce-a1e3-9e85cb645c49",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 914.77362121401165,
+            "y": 0
+          },
+          "nodeIndex": "Dest Airports",
+          "nodeLineageTag": "9d9dff4a-02c4-498f-b229-b0c684c06bd2",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Flight Date",
+          "nodeLineageTag": "100cd608-e69f-43ed-86e5-0d6b8f31c022",
+          "size": {
+            "height": 253,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 607,
+            "y": 0
+          },
+          "nodeIndex": "Origin Airports",
+          "nodeLineageTag": "9dbe4d1e-2964-4a2e-85d7-5b07673bf0e5",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 903.37232023468846,
+            "y": 549.18470796603128
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "57c9f55d-fc9e-4e90-9237-b99493b303ed",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

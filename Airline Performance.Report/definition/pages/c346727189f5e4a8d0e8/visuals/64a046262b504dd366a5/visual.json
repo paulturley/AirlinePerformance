@@ -1,0 +1,183 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "64a046262b504dd366a5",
+  "position": {
+    "x": 231.53846153846152,
+    "y": 566.92307692307691,
+    "z": 0,
+    "height": 146.92307692307691,
+    "width": 1041.5384615384614,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Flight Date"
+                    }
+                  },
+                  "Property": "Flight Date"
+                }
+              },
+              "queryRef": "Flight Date.Flight Date",
+              "nativeQueryRef": "Flight Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Airlines"
+                    }
+                  },
+                  "Property": "Airline Name"
+                }
+              },
+              "queryRef": "Airlines.Airline Name",
+              "nativeQueryRef": "Airline Name1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Airlines"
+                    }
+                  },
+                  "Property": "Airline Code"
+                }
+              },
+              "queryRef": "Airlines.Airline Code",
+              "nativeQueryRef": "Airline Code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Airline Performance"
+                    }
+                  },
+                  "Property": "Flight Number"
+                }
+              },
+              "queryRef": "Airline Performance.Flight Number",
+              "nativeQueryRef": "Flight Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Airline Performance"
+                    }
+                  },
+                  "Property": "Tail Number"
+                }
+              },
+              "queryRef": "Airline Performance.Tail_Number",
+              "nativeQueryRef": "Tail_Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Origin Airports"
+                    }
+                  },
+                  "Property": "Origin Airport Descr"
+                }
+              },
+              "queryRef": "Origin Airports.Origin Airport Descr",
+              "nativeQueryRef": "Origin Airport Descr"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dest Airports"
+                    }
+                  },
+                  "Property": "Dest Airport Descr"
+                }
+              },
+              "queryRef": "Dest Airports.Dest Airport Descr",
+              "nativeQueryRef": "Dest Airport Descr"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg Departure Delay"
+                }
+              },
+              "queryRef": "_Measures.Avg Departure Delay",
+              "nativeQueryRef": "Avg Departure Delay1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg Arrival Delay"
+                }
+              },
+              "queryRef": "_Measures.Avg Arrival Delay",
+              "nativeQueryRef": "Avg Arrival Delay1"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "102.72671143812008D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Flight Date.Flight Date"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

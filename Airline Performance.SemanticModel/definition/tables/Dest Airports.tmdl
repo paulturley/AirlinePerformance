@@ -1,0 +1,89 @@
+table 'Dest Airports'
+	lineageTag: 9d9dff4a-02c4-498f-b229-b0c684c06bd2
+
+	column 'Dest Airport Code'
+		dataType: string
+		lineageTag: cffdd80d-254c-402a-b2bc-1b717a25acb2
+		summarizeBy: none
+		sourceColumn: Dest Airport Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dest City Name'
+		dataType: string
+		lineageTag: 5f2c6fc6-9a4f-46c3-bf46-f4238968653f
+		dataCategory: Place
+		summarizeBy: none
+		sourceColumn: Dest City Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dest State'
+		dataType: string
+		lineageTag: 249c0b7c-5bf1-4542-827b-3eccd391a240
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Dest State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dest State Fips'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 36ab238b-3cda-4205-a663-dfc91fe794a9
+		summarizeBy: none
+		sourceColumn: Dest State Fips
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dest State Name'
+		dataType: string
+		lineageTag: e265478b-5fd3-43a7-851e-c2d4232c771e
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Dest State Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dest Wac'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4980c5b0-6087-49c7-aaa6-771cc45a7fc6
+		summarizeBy: none
+		sourceColumn: Dest Wac
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dest Airport Descr'
+		dataType: string
+		lineageTag: 75d43ead-9dc0-4f43-83d4-c7d295054604
+		summarizeBy: none
+		sourceColumn: Dest Airport Descr
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dest Airports' = m
+		mode: import
+		queryGroup: 'Output Queries'
+		source =
+				let
+				    Source = #"Airline Performance Base",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Dest", "DestCityName", "DestState", "DestStateFips", "DestStateName", "DestWac"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns", {"Dest"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates",{{"Dest", "Dest Airport Code"}, {"DestCityName", "Dest City Name"}, {"DestState", "Dest State"}, {"DestStateName", "Dest State Name"}, {"DestStateFips", "Dest State Fips"}, {"DestWac", "Dest Wac"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"Dest Airport Code", "Dest City Name", "Dest State", "Dest State Name", "Dest State Fips", "Dest Wac"}),
+				    #"Added: Dest Airport Descr" = Table.AddColumn(#"Reordered Columns", "Dest Airport Descr", each [Dest Airport Code] & "-" & [Dest City Name]),
+				    #"Changed Type: Dest Airport Descr" = Table.TransformColumnTypes(#"Added: Dest Airport Descr",{{"Dest Airport Descr", type text}})
+				in
+				    #"Changed Type: Dest Airport Descr"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

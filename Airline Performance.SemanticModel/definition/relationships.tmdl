@@ -1,0 +1,16 @@
+relationship AutoDetected_ce5ef383-f4c7-4328-88df-75db9646fbee
+	fromColumn: 'Airline Performance'.Origin
+	toColumn: 'Origin Airports'.'Origin Airport Code'
+
+relationship AutoDetected_01e13478-0884-4410-a0ba-d8f35f70d07d
+	fromColumn: 'Airline Performance'.Dest
+	toColumn: 'Dest Airports'.'Dest Airport Code'
+
+relationship 32f85bea-a597-9e24-0fc3-c86c9aa79ed1
+	fromColumn: 'Airline Performance'.'Operating Airline'
+	toColumn: Airlines.'Airline Code'
+
+relationship 8ddbb396-ca17-032b-269f-2e4fc1373928
+	fromColumn: 'Airline Performance'.FlightDate
+	toColumn: 'Flight Date'.'Flight Date'
+

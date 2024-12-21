@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "6c8d4b01d3fd94582bca",
+  "position": {
+    "x": 9.375,
+    "y": 116.875,
+    "z": 1000,
+    "height": 405.625,
+    "width": 572.5,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "sankey02300D1BE6F5427989F3DE31CCA9E0F32020",
+    "query": {
+      "queryState": {
+        "Destination": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dest Airports"
+                    }
+                  },
+                  "Property": "Dest Airport Descr"
+                }
+              },
+              "queryRef": "Dest Airports.Dest Airport Descr",
+              "nativeQueryRef": "Dest Airport Descr"
+            }
+          ]
+        },
+        "Source": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Origin Airports"
+                    }
+                  },
+                  "Property": "Origin Airport Descr"
+                }
+              },
+              "queryRef": "Origin Airports.Origin Airport Descr",
+              "nativeQueryRef": "Origin Airport Descr"
+            }
+          ]
+        },
+        "Weight": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Flight Count"
+                }
+              },
+              "queryRef": "_Measures.Flight Count",
+              "nativeQueryRef": "Flight Count"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "nodeComplexSettings": [
+        {
+          "properties": {
+            "nodePositions": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[{\"name\":\"LGB-Long Beach, CA\",\"x\":\"0\",\"y\":\"0\"},{\"name\":\"SBP-San Luis Obispo, CA\",\"x\":\"0\",\"y\":\"4\"},{\"name\":\"SBA-Santa Barbara, CA\",\"x\":\"0\",\"y\":\"10\"},{\"name\":\"FAT-Fresno, CA\",\"x\":\"0\",\"y\":\"17\"},{\"name\":\"STS-Santa Rosa, CA\",\"x\":\"0\",\"y\":\"27\"},{\"name\":\"PSP-Palm Springs, CA\",\"x\":\"0\",\"y\":\"37\"},{\"name\":\"ONT-Ontario, CA\",\"x\":\"0\",\"y\":\"48\"},{\"name\":\"BUR-Burbank, CA\",\"x\":\"0\",\"y\":\"66\"},{\"name\":\"SNA-Santa Ana, CA\",\"x\":\"0\",\"y\":\"86\"},{\"name\":\"SAN-San Diego, CA\",\"x\":\"0\",\"y\":\"107\"},{\"name\":\"OAK-Oakland, CA\",\"x\":\"0\",\"y\":\"134\"},{\"name\":\"SMF-Sacramento, CA\",\"x\":\"0\",\"y\":\"167\"},{\"name\":\"SJC-San Jose, CA\",\"x\":\"0\",\"y\":\"202\"},{\"name\":\"SFO-San Francisco, CA\",\"x\":\"2\",\"y\":\"244\"},{\"name\":\"LAX-Los Angeles, CA\",\"x\":\"0\",\"y\":\"296\"},{\"name\":\"PDX-Portland, OR\",\"x\":\"521\",\"y\":\"0\"}]'"
+                }
+              }
+            },
+            "viewportSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"height\":\"356.2916660308838\",\"width\":\"542.5\"}'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
