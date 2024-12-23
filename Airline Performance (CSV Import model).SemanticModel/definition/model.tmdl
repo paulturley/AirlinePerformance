@@ -1,0 +1,47 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Transform File from Airline Performance CSV'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Airline Performance CSV\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Parameters
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup 'Base Queries'
+
+	annotation PBI_QueryGroupOrder = 4
+
+queryGroup 'Output Queries'
+
+	annotation PBI_QueryGroupOrder = 5
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.138.828.0 (24.11)
+
+annotation PBI_QueryOrder = ["Airline Performance Base","L_UNIQUE_CARRIERS","Sample File","Parameter1","Transform Sample File","Transform File","Airline Performance","Origin Airports","Dest Airports","Airlines","SourceFilePath","FlightDateStart","FlightDateEnd","Flight Date"]
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Airline Performance'
+ref table 'Origin Airports'
+ref table 'Dest Airports'
+ref table 'Flight Date'
+ref table Airlines
+ref table _Measures
+
+ref cultureInfo en-US
+

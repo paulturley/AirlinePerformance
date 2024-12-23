@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "b436b3f3edc2539e2a82",
+  "position": {
+    "x": 232.55255255255258,
+    "y": 135.4954954954955,
+    "z": 1000,
+    "height": 421.86186186186188,
+    "width": 1040.7207207207209,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Carriers"
+                    }
+                  },
+                  "Property": "Airline Name"
+                }
+              },
+              "queryRef": "Carriers.Airline Name",
+              "nativeQueryRef": "Airline Name"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Airline Performance"
+                    }
+                  },
+                  "Property": "Flight Count"
+                }
+              },
+              "queryRef": "_Measures.Flight Count",
+              "nativeQueryRef": "Flight Count"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Airline Performance"
+                    }
+                  },
+                  "Property": "Avg Departure Delay"
+                }
+              },
+              "queryRef": "Airline Performance.Avg Departure Delay",
+              "nativeQueryRef": "Avg Departure Delay",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Airline Performance"
+                    }
+                  },
+                  "Property": "Avg Arrival Delay"
+                }
+              },
+              "queryRef": "Airline Performance.Avg Arrival Delay",
+              "nativeQueryRef": "Avg Arrival Delay"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "-5D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "-5D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Right'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ScatterNoPlayAxis'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "isHidden": true
+}

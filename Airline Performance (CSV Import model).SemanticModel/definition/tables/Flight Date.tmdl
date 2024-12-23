@@ -1,0 +1,93 @@
+table 'Flight Date'
+	lineageTag: 100cd608-e69f-43ed-86e5-0d6b8f31c022
+	dataCategory: Time
+
+	column 'Flight Date'
+		dataType: dateTime
+		isKey
+		formatString: Short Date
+		lineageTag: 4ef43b58-4e55-4540-9444-caa8e0108c96
+		summarizeBy: none
+		sourceColumn: Flight Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Day of Week'
+		dataType: int64
+		formatString: 0
+		lineageTag: b21b54f1-e54a-4127-9d1e-db4ffbba9ed7
+		summarizeBy: none
+		sourceColumn: Day of Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: 1253760d-bfb0-4632-8922-67a9f9c9e954
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8773dfb9-73f0-4f0d-abd6-8982f4404e19
+		summarizeBy: none
+		sourceColumn: Week of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 10d3ad67-36aa-484e-b0b2-0174754fe731
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 0c7a5783-b9ac-4678-9c3e-3679cfe67ef8
+		summarizeBy: none
+		sourceColumn: Month Name
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: d793e008-eb96-44a3-87b9-d8c93c22e60e
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Flight Date' = m
+		mode: import
+		queryGroup: 'Output Queries'
+		source =
+				let
+				    Source = { Number.From(FlightDateStart)..Number.From(FlightDateEnd) },
+				    #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "Flight Date"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Flight Date", type date}}),
+				    #"Inserted Day of Week" = Table.AddColumn(#"Changed Type", "Day of Week", each Date.DayOfWeek([Flight Date]), Int64.Type),
+				    #"Inserted Day Name" = Table.AddColumn(#"Inserted Day of Week", "Day Name", each Date.DayOfWeekName([Flight Date]), type text),
+				    #"Inserted Week of Year" = Table.AddColumn(#"Inserted Day Name", "Week of Year", each Date.WeekOfYear([Flight Date]), Int64.Type),
+				    #"Inserted Month" = Table.AddColumn(#"Inserted Week of Year", "Month", each Date.Month([Flight Date]), Int64.Type),
+				    #"Inserted Month Name" = Table.AddColumn(#"Inserted Month", "Month Name", each Date.MonthName([Flight Date]), type text),
+				    #"Inserted Year" = Table.AddColumn(#"Inserted Month Name", "Year", each Date.Year([Flight Date]), Int64.Type)
+				in
+				    #"Inserted Year"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

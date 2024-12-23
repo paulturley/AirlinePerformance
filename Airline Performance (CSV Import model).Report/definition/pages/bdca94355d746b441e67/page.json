@@ -1,0 +1,226 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.2.0/schema.json",
+  "name": "bdca94355d746b441e67",
+  "displayName": "Delay Trend Tooltip",
+  "displayOption": "ActualSize",
+  "height": 240,
+  "width": 320,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3d5a30335e32728c8600",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Origin Airports"
+              }
+            },
+            "Property": "Origin Airport Descr"
+          }
+        },
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "928cdbc13b3856c40ac0",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Airlines"
+              }
+            },
+            "Property": "Airline Name"
+          }
+        },
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "a0b806827cdcd12f11fa",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dest Airports"
+              }
+            },
+            "Property": "Dest Airport Code"
+          }
+        },
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "b9e4e283c041b36618aa",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Origin Airports"
+              }
+            },
+            "Property": "Origin Airport Code"
+          }
+        },
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "f2882e8b07fb3982862c",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dest Airports"
+              }
+            },
+            "Property": "Dest Airport Descr"
+          }
+        },
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "80fac8d3a3d01a9b4084",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Airlines"
+              }
+            },
+            "Property": "Airline Code"
+          }
+        },
+        "howCreated": "Drillthrough"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "pageBinding": {
+    "name": "f7a1dfc11d2b12efd137",
+    "type": "Tooltip",
+    "parameters": [
+      {
+        "name": "9d066935e14cf3af4914",
+        "boundFilter": "a0b806827cdcd12f11fa",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dest Airports"
+              }
+            },
+            "Property": "Dest Airport Code"
+          }
+        }
+      },
+      {
+        "name": "a8af4e4fdc086c56190f",
+        "boundFilter": "b9e4e283c041b36618aa",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Origin Airports"
+              }
+            },
+            "Property": "Origin Airport Code"
+          }
+        }
+      },
+      {
+        "name": "16df0b7d717cf73aae53",
+        "boundFilter": "f2882e8b07fb3982862c",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dest Airports"
+              }
+            },
+            "Property": "Dest Airport Descr"
+          }
+        }
+      },
+      {
+        "name": "021c3a3f0099ed64e35b",
+        "boundFilter": "80fac8d3a3d01a9b4084",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Airlines"
+              }
+            },
+            "Property": "Airline Code"
+          }
+        }
+      },
+      {
+        "name": "a2294d09d774c7902356",
+        "boundFilter": "928cdbc13b3856c40ac0",
+        "asAggregation": false,
+        "qnaSingleSelectRequired": false,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Airlines"
+              }
+            },
+            "Property": "Airline Name"
+          }
+        }
+      },
+      {
+        "name": "761d25473357ecc103e4",
+        "boundFilter": "3d5a30335e32728c8600",
+        "asAggregation": false,
+        "qnaSingleSelectRequired": false,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Origin Airports"
+              }
+            },
+            "Property": "Origin Airport Descr"
+          }
+        }
+      }
+    ],
+    "acceptsFilterContext": "None"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": -0.1
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
+}

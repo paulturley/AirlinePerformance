@@ -1,0 +1,175 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "3c3e1244024b6772bb5d",
+  "position": {
+    "x": 648.51485148514848,
+    "y": 413.86138613861385,
+    "z": 9000,
+    "height": 298.019801980198,
+    "width": 623.76237623762381,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Airlines"
+                    }
+                  },
+                  "Property": "Airline Code"
+                }
+              },
+              "queryRef": "Airlines.Airline Code",
+              "nativeQueryRef": "Airline Code"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Airlines"
+                    }
+                  },
+                  "Property": "Airline Name"
+                }
+              },
+              "queryRef": "Airlines.Airline Name",
+              "nativeQueryRef": "Airline Name1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Origin Airports"
+                    }
+                  },
+                  "Property": "Origin Airport Code"
+                }
+              },
+              "queryRef": "Origin Airports.Origin Airport Code",
+              "nativeQueryRef": "Origin",
+              "displayName": "Origin"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dest Airports"
+                    }
+                  },
+                  "Property": "Dest Airport Code"
+                }
+              },
+              "queryRef": "Dest Airports.Dest Airport Code",
+              "nativeQueryRef": "Dest",
+              "displayName": "Dest"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Flight Count"
+                }
+              },
+              "queryRef": "_Measures.Flight Count1",
+              "nativeQueryRef": "Flight Count1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg Departure Delay"
+                }
+              },
+              "queryRef": "_Measures.Avg Departure Delay",
+              "nativeQueryRef": "Departure Delay",
+              "displayName": "Departure Delay"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg Arrival Delay"
+                }
+              },
+              "queryRef": "_Measures.Avg Arrival Delay",
+              "nativeQueryRef": "Arrival Delay",
+              "displayName": "Arrival Delay"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg Weather Delay"
+                }
+              },
+              "queryRef": "_Measures.Avg Weather Delay",
+              "nativeQueryRef": "Avg Weather Delay"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'bdca94355d746b441e67'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

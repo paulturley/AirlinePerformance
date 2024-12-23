@@ -1,0 +1,318 @@
+table 'Airline Performance'
+	lineageTag: 7041e8d6-db8a-4fda-9957-b075d4bee8bf
+
+	column FlightDate
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 16b31b0c-7603-4672-8b07-9ba152ed3c80
+		summarizeBy: none
+		sourceColumn: FlightDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Tail Number'
+		dataType: string
+		lineageTag: 2be93d82-daea-4d18-bb21-639abf7b27c8
+		summarizeBy: none
+		sourceColumn: Tail Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Flight Number'
+		dataType: string
+		lineageTag: 815fe318-26b7-4a7c-ab02-ee80a7f125c2
+		summarizeBy: none
+		sourceColumn: Flight Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Origin
+		dataType: string
+		isHidden
+		lineageTag: 2c7df63a-ede8-4b7c-9862-a26a6b6d9bb0
+		summarizeBy: none
+		sourceColumn: Origin
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dest
+		dataType: string
+		isHidden
+		lineageTag: d67e5346-7000-4e7e-b35a-b9c8ba56dc96
+		summarizeBy: none
+		sourceColumn: Dest
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sched Dep Time'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 43656d42-40b6-41ca-a9a9-0747b6beec8e
+		summarizeBy: none
+		sourceColumn: Sched Dep Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'Dep Time'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: dd954c26-b7a1-4321-97fc-245678c520e4
+		summarizeBy: none
+		sourceColumn: Dep Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column DepDelay
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 68c5520c-bbf8-419c-8963-996b21900c48
+		summarizeBy: sum
+		sourceColumn: DepDelay
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dep Time Blk'
+		dataType: string
+		lineageTag: bbb4ba59-949f-42ce-9312-9dd3fdc7202a
+		summarizeBy: none
+		sourceColumn: Dep Time Blk
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxiOut
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 54fb2156-8f5b-4d5c-8fb2-55c221d93862
+		summarizeBy: sum
+		sourceColumn: TaxiOut
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Wheels On Time'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: e6c17aac-c7c9-488f-a34e-c561996954d7
+		summarizeBy: none
+		sourceColumn: Wheels On Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column TaxiIn
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d3e02fcd-5735-44a1-be13-00d7f1f9448d
+		summarizeBy: sum
+		sourceColumn: TaxiIn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sched Arr Time'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: f88389b3-7ec9-465a-b3af-cdee4b2e8b7d
+		summarizeBy: none
+		sourceColumn: Sched Arr Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'Arr Time'
+		dataType: dateTime
+		isHidden
+		formatString: Long Time
+		lineageTag: 19045117-80d9-4bae-b7e9-d87723a93d46
+		summarizeBy: none
+		sourceColumn: Arr Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column ArrDelay
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2ccce9c9-8b01-4976-abe8-69e267f4ef82
+		summarizeBy: sum
+		sourceColumn: ArrDelay
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Arr Time Blk'
+		dataType: string
+		isHidden
+		lineageTag: 849ccf66-cbbc-4a4f-b3b0-15b11b8ce650
+		summarizeBy: none
+		sourceColumn: Arr Time Blk
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cancelled
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f192982d-6e1e-4683-b04a-ef9d7e9501c2
+		summarizeBy: none
+		sourceColumn: Cancelled
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cancellation Code'
+		dataType: string
+		lineageTag: ef66e13a-db5f-4586-8bf2-a5dc2121124a
+		summarizeBy: none
+		sourceColumn: Cancellation Code
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualElapsedTime
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5c1212ff-6778-4d37-8f84-3da836f62320
+		summarizeBy: sum
+		sourceColumn: ActualElapsedTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column AirTime
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8e9147ac-c850-4900-8f12-5555f2c82abb
+		summarizeBy: sum
+		sourceColumn: AirTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column Distance
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 26196319-01f6-4c07-a14c-3bb9a7db2e75
+		summarizeBy: sum
+		sourceColumn: Distance
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance Group'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a37bedf2-8330-44c1-ab10-149fc2eebf95
+		summarizeBy: sum
+		sourceColumn: Distance Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column CarrierDelay
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 378814ee-003c-424e-baf9-377b62ae2ccd
+		summarizeBy: sum
+		sourceColumn: CarrierDelay
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeatherDelay
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ed2dad14-758b-4358-a2ad-ddf4f9e4b53c
+		summarizeBy: sum
+		sourceColumn: WeatherDelay
+
+		annotation SummarizationSetBy = Automatic
+
+	column NASDelay
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: be43e1bb-8583-490d-8249-1ea277f3e282
+		summarizeBy: sum
+		sourceColumn: NASDelay
+
+		annotation SummarizationSetBy = Automatic
+
+	column SecurityDelay
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4b974d37-7ef1-4262-ba5f-58b475c7b77f
+		summarizeBy: sum
+		sourceColumn: SecurityDelay
+
+		annotation SummarizationSetBy = Automatic
+
+	column LateAircraftDelay
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 867ac126-bd4b-4157-86ec-ce5949cac884
+		summarizeBy: sum
+		sourceColumn: LateAircraftDelay
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Wheels Off Time'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: e63a138b-5bf1-4b8d-bcbc-acf067f96d74
+		summarizeBy: none
+		sourceColumn: Wheels Off Time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'Operating Airline'
+		dataType: string
+		isHidden
+		lineageTag: cb11ef01-30f0-4376-a80b-79fae7b531f7
+		summarizeBy: none
+		sourceColumn: Operating Airline
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Airline Performance' = m
+		mode: import
+		queryGroup: 'Output Queries'
+		source =
+				let
+				    Source = #"Airline Performance Base",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"FlightDate", "Operating_Airline", "Tail_Number", "Flight_Number_Operating_Airline", "Origin", "Dest", "CRSDepTime", "DepTime", "DepDelay", "DepTimeBlk", "TaxiOut", "WheelsOff", "WheelsOn", "TaxiIn", "CRSArrTime", "ArrTime", "ArrDelay", "ArrTimeBlk", "Cancelled", "CancellationCode", "ActualElapsedTime", "AirTime", "Distance", "DistanceGroup", "CarrierDelay", "WeatherDelay", "NASDelay", "SecurityDelay", "LateAircraftDelay"}),
+				    #"Changed Canceled to Logical" = Table.TransformColumnTypes(#"Removed Other Columns",{{"Cancelled", type logical}}),
+				    #"Replaced 2400 CRSDepTime" = Table.ReplaceValue(#"Changed Canceled to Logical","2400","0000",Replacer.ReplaceText,{"CRSDepTime"}),
+				    #"Replaced 2400 DepTime" = Table.ReplaceValue(#"Replaced 2400 CRSDepTime","2400","0000",Replacer.ReplaceText,{"DepTime"}),
+				    #"Replaced 2400 WheelsOff" = Table.ReplaceValue(#"Replaced 2400 DepTime","2400","0000",Replacer.ReplaceText,{"WheelsOff"}),
+				    #"Replaced 2400 WheelsOn" = Table.ReplaceValue(#"Replaced 2400 WheelsOff","2400","0000",Replacer.ReplaceText,{"WheelsOn"}),
+				    #"Replaced 2400 CRSArrTime" = Table.ReplaceValue(#"Replaced 2400 WheelsOn","2400","0000",Replacer.ReplaceText,{"CRSArrTime"}),
+				    #"Replaced 2400 ArrTime" = Table.ReplaceValue(#"Replaced 2400 CRSArrTime","2400","0000",Replacer.ReplaceText,{"ArrTime"}),
+				    #"Changed Type to Time" = Table.TransformColumnTypes(#"Replaced 2400 ArrTime",{{"CRSDepTime", type time}, {"DepTime", type time}, {"WheelsOff", type time}, {"WheelsOn", type time}, {"CRSArrTime", type time}, {"ArrTime", type time}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type to Time",{{"CRSDepTime", "Sched Dep Time"}, {"DepTime", "Dep Time"}, {"WheelsOff", "Wheels Off Time"}, {"WheelsOn", "Wheels On Time"}, {"CRSArrTime", "Sched Arr Time"}, {"ArrTime", "Arr Time"}, {"Operating_Airline", "Operating Airline"}, {"Tail_Number", "Tail Number"}, {"Flight_Number_Operating_Airline", "Flight Number"}, {"DistanceGroup", "Distance Group"}, {"DepTimeBlk", "Dep Time Blk"}, {"ArrTimeBlk", "Arr Time Blk"}, {"CancellationCode", "Cancellation Code"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

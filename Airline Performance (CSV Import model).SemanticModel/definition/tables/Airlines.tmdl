@@ -1,0 +1,38 @@
+table Airlines
+	lineageTag: 12b921d9-b791-46ce-a1e3-9e85cb645c49
+
+	column 'Airline Name'
+		dataType: string
+		lineageTag: be756933-028d-4ed2-a0f0-27f4c0cff3f2
+		summarizeBy: none
+		sourceColumn: Airline Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Airline Code'
+		dataType: string
+		lineageTag: a4a25b4b-7700-4071-80a5-8a5a20102ced
+		summarizeBy: none
+		sourceColumn: Airline Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Airlines = m
+		mode: import
+		queryGroup: 'Output Queries'
+		source =
+				let
+				    Source = #"Airline Performance Base",
+				    #"Removed all but Operating_Airline" = Table.SelectColumns(Source,{"Operating_Airline"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed all but Operating_Airline"),
+				    //Merged Airline Performance Base with L_UNIQUE_CARRIERS
+				    #"Merged Queries" = Table.NestedJoin(#"Removed Duplicates", {"Operating_Airline"}, L_UNIQUE_CARRIERS, {"Code"}, "L_UNIQUE_CARRIERS", JoinKind.Inner),
+				    #"Expanded L_UNIQUE_CARRIERS" = Table.ExpandTableColumn(#"Merged Queries", "L_UNIQUE_CARRIERS", {"Description"}, {"Description"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded L_UNIQUE_CARRIERS",{{"Operating_Airline", "Airline Code"}, {"Description", "Airline Name"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
