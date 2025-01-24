@@ -34,7 +34,7 @@ annotation PBI_QueryOrder = ["Airline Performance Base","L_UNIQUE_CARRIERS","Sam
 
 annotation __TEdtr = 1
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","TMDL-Extension"]
 
 ref table 'Airline Performance'
 ref table 'Origin Airports'
