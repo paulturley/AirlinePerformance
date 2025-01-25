@@ -23,6 +23,7 @@ table Airlines
 		source =
 				let
 				    Source = #"Airline Performance Base",
+					//Remove unneeded columns
 				    #"Removed all but Operating_Airline" = Table.SelectColumns(Source,{"Operating_Airline"}),
 				    #"Removed Duplicates" = Table.Distinct(#"Removed all but Operating_Airline"),
 				    //Merged Airline Performance Base with L_UNIQUE_CARRIERS
