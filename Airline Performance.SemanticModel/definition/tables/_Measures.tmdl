@@ -1,0 +1,164 @@
+table _Measures
+	lineageTag: 57c9f55d-fc9e-4e90-9237-b99493b303ed
+
+	measure 'Selected Origin Codes' = ```
+			
+			    VAR _OriginCount = COUNTROWS( 'Origin Airports' )
+			RETURN
+			    IF( _OriginCount > 10, -- List top 10 by flights count
+			        FORMAT( _OriginCount, "" ) & " airports selected",
+			        CONCATENATEX( VALUES( 'Origin Airports'[Origin Airport Code] ), 'Origin Airports'[Origin Airport Code], ", " )
+			    )
+			```
+		displayFolder: Selections
+		lineageTag: b5e3aff4-b4b4-4cbc-b983-32ee0a4e1caf
+
+	measure 'Selected Dest Codes' = ```
+			
+			    VAR _Count = COUNTROWS( 'Dest Airports' )
+			RETURN
+			    IF( _Count > 10, 
+			        FORMAT( _Count, "" ) & " airports selected",
+			        CONCATENATEX( VALUES( 'Dest Airports'[Dest Airport Code] ), 
+			            'Dest Airports'[Dest Airport Code], ", " 
+			        )
+			    )
+			```
+		displayFolder: Selections
+		lineageTag: 49a2c3e4-5ed1-4415-9b55-03c0d5659df7
+
+	measure 'Selected Airline Codes' = ```
+			
+			    VAR _CarrierCount = COUNTROWS( 'Airlines' )
+			RETURN
+			    IF( ISFILTERED( 'Airlines' ),
+			        IF( _CarrierCount > 9, 
+			            FORMAT( _CarrierCount, "") & " Airlines",
+			            CONCATENATEX( VALUES( 'Airlines'[Airline Code] ), 'Airlines'[Airline Code], ", " )
+			        ),
+			        "All Airlines"
+			    )
+			```
+		displayFolder: Selections
+		lineageTag: 4d11bfe0-7f54-43c5-968c-b5143973b688
+
+	measure 'Flight Count YoY Growth %' = ```
+			
+			    VAR _PYCount =  [Flight Count PY]
+			    VAR _Count =    [Flight Count]
+			    VAR _Diff =     _Count - _PYCount
+			RETURN
+			    DIVIDE( _Diff, _PYCount )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Counts
+		lineageTag: e19f2dfd-4ac2-400b-b444-55a868203d32
+
+	measure 'Flight Count PY' = ```
+			
+			    CALCULATE( [Flight Count],
+			        SAMEPERIODLASTYEAR( 'Flight Date'[Flight Date] )  
+			    )
+			```
+		formatString: #,0
+		displayFolder: Counts
+		lineageTag: 084f5bf1-0786-4b11-bbd1-6b76617c9ee5
+
+	measure 'Flight Count' = COUNTROWS( 'Airline Performance' )
+		formatString: #,0
+		displayFolder: Counts
+		lineageTag: e2957f8f-525f-4ca8-b517-a4007e560d20
+
+	measure 'Avg Weather Delay PY' = ```
+			
+			    CALCULATE( [Avg Weather Delay],
+			        SAMEPERIODLASTYEAR( 'Flight Date'[Flight Date] )  
+			    )
+			```
+		formatString: #,##0
+		displayFolder: Delays
+		lineageTag: 4cfb2522-4153-4e77-bb5a-9678b88cc7fd
+
+	measure 'Avg Weather Delay' = AVERAGE( 'Airline Performance'[WeatherDelay] )
+		formatString: #,##0
+		displayFolder: Delays
+		lineageTag: 1da329a8-81eb-45ba-aae5-2114e915a351
+
+	measure 'Avg Security Delay' = AVERAGE( 'Airline Performance'[SecurityDelay] )
+		formatString: #,##0
+		displayFolder: Delays
+		lineageTag: ce194f84-fcd1-43f1-ab28-38ac5f6b79cd
+
+	measure 'Avg NAS Delay' = AVERAGE( 'Airline Performance'[NASDelay] )
+		formatString: #,##0
+		displayFolder: Delays
+		lineageTag: 920764f7-ee53-4ccd-9252-8baee5752cfb
+
+	measure 'Avg Late Aircraft Delay' = AVERAGE( 'Airline Performance'[LateAircraftDelay] )
+		formatString: #,##0
+		displayFolder: Delays
+		lineageTag: e7461721-25d0-4386-9ccc-2fba8292906f
+
+	measure 'Avg Distance' = ```
+			AVERAGE( 'Airline Performance'[Distance] )
+			
+			```
+		formatString: #,##0
+		displayFolder: Delays
+		lineageTag: 9545fadb-bb48-41f0-b2cd-18106f5c9fb9
+
+	measure 'Avg Departure Delay' = AVERAGE( 'Airline Performance'[DepDelay] )
+		formatString: #,##0
+		displayFolder: Delays
+		lineageTag: 4730d527-8059-477d-9962-9414e62c35d6
+
+	measure 'Avg Carrier Delay' = AVERAGE( 'Airline Performance'[CarrierDelay] )
+		formatString: #,##0
+		displayFolder: Delays
+		lineageTag: 691f3049-3f24-4028-9fd1-7ec5ea39837a
+
+	measure 'Avg Arrival Delay PY' = ```
+			
+			    CALCULATE( [Avg Arrival Delay],
+			        SAMEPERIODLASTYEAR( 'Flight Date'[Flight Date] )  
+			    )
+			```
+		formatString: #,##0
+		displayFolder: Delays
+		lineageTag: 3352dc27-7626-4835-b8ae-89423d882623
+
+	measure 'Avg Arrival Delay' = AVERAGE( 'Airline Performance'[ArrDelay] )
+		formatString: #,##0
+		displayFolder: Delays
+		lineageTag: 340055d2-f3e9-4c28-94d1-4dae79f34180
+
+	measure 'Selected Airline Name' = ```
+			
+			    VAR _CarrierCount = COUNTROWS( 'Airlines' )
+			RETURN
+			    IF( ISFILTERED( 'Airlines' ),
+			        IF( _CarrierCount > 9, 
+			            FORMAT( _CarrierCount, "") & " Airlines",
+			            CONCATENATEX( VALUES( 'Airlines'[Airline Name] ), 'Airlines'[Airline Name], ", " )
+			        ),
+			        "All Airlines"
+			    )
+			```
+		displayFolder: Selections
+		lineageTag: f6cff899-5d71-46dd-8abc-6a905783e0a2
+
+	column Value
+		isHidden
+		lineageTag: 2d2d030d-b768-403c-b0b8-cf45fe3622d1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = {"ID"}
+
+	annotation PBI_Id = 14ba9e6bf1b6418492687a0f3612a425
+

@@ -1,0 +1,105 @@
+expression 'Sample File' =
+		let
+		    Source = Folder.Files( SourceFilePath & "\CSV Header" ),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 239feb0f-6b1b-4bf3-b3d3-fc5e60d7bfc2
+	queryGroup: 'Transform File from Airline Performance CSV\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression Parameter1 = #"Sample File" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 4480896c-24e0-41fd-9475-9b5ec67025d1
+	queryGroup: 'Transform File from Airline Performance CSV\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'Transform Sample File' =
+		let
+		    Source = Csv.Document(Parameter1,[Delimiter=",", Columns=120, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 4123cd53-7063-4ed5-b75b-eb3d56a692cb
+	queryGroup: 'Transform File from Airline Performance CSV'
+
+	annotation PBI_ResultType = Table
+
+expression 'Transform File' =
+		let
+		    Source = (Parameter1 as binary) => let
+		    Source = Csv.Document(Parameter1,[Delimiter=",", Columns=120, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	lineageTag: 5ded6795-1af1-468a-b4ab-5575c41b7747
+	queryGroup: 'Transform File from Airline Performance CSV\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression 'Airline Performance Base' =
+		let
+		    Source = Folder.Files( "C:\Data\Airline Ontime Performance\CSV Header" ),
+		    #"Filtered Hidden Files" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),
+		    #"Invoke Custom Function" = Table.AddColumn(#"Filtered Hidden Files", "Transform File", each #"Transform File"([Content])),
+		    #"Renamed Columns" = Table.RenameColumns(#"Invoke Custom Function", {"Name", "Source.Name"}),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns", {"Source.Name", "Transform File"}),
+		    #"Expanded Table Column" = Table.ExpandTableColumn(#"Removed Other Columns", "Transform File", Table.ColumnNames(#"Transform File"(#"Sample File"))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column",{{"Source.Name", type text}, {"Year", Int64.Type}, {"Quarter", Int64.Type}, {"Month", Int64.Type}, {"DayofMonth", Int64.Type}, {"DayOfWeek", Int64.Type}, {"FlightDate", type date}, {"Marketing_Airline_Network", type text}, {"Operated_or_Branded_Code_Share_Partners", type text}, {"DOT_ID_Marketing_Airline", Int64.Type}, {"IATA_Code_Marketing_Airline", type text}, {"Flight_Number_Marketing_Airline", type text}, {"Originally_Scheduled_Code_Share_Airline", type any}, {"DOT_ID_Originally_Scheduled_Code_Share_Airline", type any}, {"IATA_Code_Originally_Scheduled_Code_Share_Airline", type any}, {"Flight_Num_Originally_Scheduled_Code_Share_Airline", type any}, {"Operating_Airline ", type text}, {"DOT_ID_Operating_Airline", Int64.Type}, {"IATA_Code_Operating_Airline", type text}, {"Tail_Number", type text}, {"Flight_Number_Operating_Airline", type text}, {"OriginAirportID", Int64.Type}, {"OriginAirportSeqID", Int64.Type}, {"OriginCityMarketID", Int64.Type}, {"Origin", type text}, {"OriginCityName", type text}, {"OriginState", type text}, {"OriginStateFips", Int64.Type}, {"OriginStateName", type text}, {"OriginWac", Int64.Type}, {"DestAirportID", Int64.Type}, {"DestAirportSeqID", Int64.Type}, {"DestCityMarketID", Int64.Type}, {"Dest", type text}, {"DestCityName", type text}, {"DestState", type text}, {"DestStateFips", Int64.Type}, {"DestStateName", type text}, {"DestWac", Int64.Type}, {"CRSDepTime", type text}, {"DepTime", type text}, {"DepDelay", Int64.Type}, {"DepDelayMinutes", Int64.Type}, {"DepDel15", Int64.Type}, {"DepartureDelayGroups", Int64.Type}, {"DepTimeBlk", type text}, {"TaxiOut", Int64.Type}, {"WheelsOff", type text}, {"WheelsOn", type text}, {"TaxiIn", Int64.Type}, {"CRSArrTime", type text}, {"ArrTime", type text}, {"ArrDelay", Int64.Type}, {"ArrDelayMinutes", Int64.Type}, {"ArrDel15", Int64.Type}, {"ArrivalDelayGroups", Int64.Type}, {"ArrTimeBlk", type text}, {"Cancelled", Int64.Type}, {"CancellationCode", type text}, {"Diverted", Int64.Type}, {"CRSElapsedTime", Int64.Type}, {"ActualElapsedTime", Int64.Type}, {"AirTime", Int64.Type}, {"Flights", Int64.Type}, {"Distance", Int64.Type}, {"DistanceGroup", Int64.Type}, {"CarrierDelay", Int64.Type}, {"WeatherDelay", Int64.Type}, {"NASDelay", Int64.Type}, {"SecurityDelay", Int64.Type}, {"LateAircraftDelay", Int64.Type}, {"FirstDepTime", Int64.Type}, {"TotalAddGTime", Int64.Type}, {"LongestAddGTime", Int64.Type}, {"DivAirportLandings", Int64.Type}, {"DivReachedDest", Int64.Type}, {"DivActualElapsedTime", Int64.Type}, {"DivArrDelay", Int64.Type}, {"DivDistance", Int64.Type}, {"Div1Airport", type text}, {"Div1AirportID", Int64.Type}, {"Div1AirportSeqID", Int64.Type}, {"Div1WheelsOn", Int64.Type}, {"Div1TotalGTime", Int64.Type}, {"Div1LongestGTime", Int64.Type}, {"Div1WheelsOff", Int64.Type}, {"Div1TailNum", type text}, {"Div2Airport", type any}, {"Div2AirportID", type any}, {"Div2AirportSeqID", type any}, {"Div2WheelsOn", type any}, {"Div2TotalGTime", type any}, {"Div2LongestGTime", type any}, {"Div2WheelsOff", type any}, {"Div2TailNum", type any}, {"Div3Airport", type any}, {"Div3AirportID", type any}, {"Div3AirportSeqID", type any}, {"Div3WheelsOn", type any}, {"Div3TotalGTime", type any}, {"Div3LongestGTime", type any}, {"Div3WheelsOff", type any}, {"Div3TailNum", type any}, {"Div4Airport", type any}, {"Div4AirportID", type any}, {"Div4AirportSeqID", type any}, {"Div4WheelsOn", type any}, {"Div4TotalGTime", type any}, {"Div4LongestGTime", type any}, {"Div4WheelsOff", type any}, {"Div4TailNum", type any}, {"Div5Airport", type any}, {"Div5AirportID", type any}, {"Div5AirportSeqID", type any}, {"Div5WheelsOn", type any}, {"Div5TotalGTime", type any}, {"Div5LongestGTime", type any}, {"Div5WheelsOff", type any}, {"Div5TailNum", type any}, {"Duplicate", type text}, {"", type any}}),
+		    // Removed trailing space from column name
+		    #"Renamed Operating_Airline (trailing space)" = Table.RenameColumns(#"Changed Type",{{"Operating_Airline ", "Operating_Airline"}})
+		in
+		    #"Renamed Operating_Airline (trailing space)"
+	lineageTag: be489a48-7d8a-4dd5-a182-d99829c53402
+	queryGroup: 'Base Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression SourceFilePath = "C:\Data\Airline Ontime Performance" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 61ad17f4-4823-43fd-91d0-ae50d65ec84e
+	queryGroup: Parameters
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression FlightDateStart = #date(2022, 1, 1) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
+	lineageTag: 6c1e62a9-54fa-4764-9875-20782082a2ae
+	queryGroup: Parameters
+
+	annotation PBI_ResultType = Date
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression FlightDateEnd = #date(2024, 12, 31) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
+	lineageTag: 7a7f6fdf-7149-496d-8e9f-ad6e73a55a2c
+	queryGroup: Parameters
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Date
+
+expression L_UNIQUE_CARRIERS =
+		let
+		    Source = Csv.Document(File.Contents( SourceFilePath & "\Lookup Tables\L_UNIQUE_CARRIERS.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Code", type text}, {"Description", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 3a7769a4-6162-4076-8f16-21418a0fd7cd
+	queryGroup: 'Base Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
