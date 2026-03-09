@@ -5,7 +5,7 @@ table _Measures
 			
 			    VAR _OriginCount = COUNTROWS( 'Origin Airports' )
 			RETURN
-			    IF( _OriginCount > 10, -- List top 10 by flights count
+			    IF( _OriginCount > 9, -- List top 10 by flights count
 			        FORMAT( _OriginCount, "" ) & " airports selected",
 			        CONCATENATEX( VALUES( 'Origin Airports'[Origin Airport Code] ), 'Origin Airports'[Origin Airport Code], ", " )
 			    )
